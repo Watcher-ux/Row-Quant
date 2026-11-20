@@ -22,18 +22,18 @@ Every value is a matrix X[t][i]: day t, stock i. Scalars broadcast. NaN propagat
 - `ts_mean(x, d)`, `ts_sum(x, d)`, `ts_std_dev(x, d)` (population std).
 - `ts_rank(x, d)`: rank of x[t] within the last d values, in [0, 1].
 - `ts_decay_linear(x, d)`: weighted mean, weights d, d-1, ..., 1 (newest heaviest).
-- `ts_corr(x, y, d)`: Pearson correlation over the window.
+- `ts_corr(x, y, d)`: Pearson correlation over the window; clamped to [-1, 1].
 - Windows with fewer than d valid values -> NaN.
 
 ## Element-wise
 `+ - * /` (division by 0 -> NaN), unary `-`, `abs sign log sqrt`, `max(x,y) min(x,y)`,
-comparisons `< > <= >= ==` -> 1/0, `if_else(cond, a, b)`.
+comparisons `< > <= >= ==` -> 1/0, `if_else(cond, a, b)` (NaN from cond or selected branch only).
 
 ## Cell references
 `A1`, `B12` etc. refer to another cell's matrix. Cycles are an error reported on every cell in the cycle.
 
 ## Backtest (delay 1)
-1. weights w[t] = alpha[t], NaN -> 0, then demean across stocks (market neutral), then scale so sum|w[t]| = 1.
+1. weights w[t]: stocks with NaN alpha get weight 0; for valid alpha, demean across those stocks (market neutral), then scale so sum|w[t]| = 1.
 2. daily pnl[t+1] = sum_i w[t][i] * returns[t+1][i].
 3. Metrics: annualized Sharpe = mean/std * sqrt(252); annual return = mean * 252;
    turnover = mean over t of sum|w[t] - w[t-1]|; max drawdown on cumulative pnl.
@@ -41,8 +41,12 @@ comparisons `< > <= >= ==` -> 1/0, `if_else(cond, a, b)`.
 ## Invariants (must be property-tested)
 - rank and ts_rank outputs are in [0, 1] or NaN.
 - rank is invariant to any strictly increasing transform of its input.
-- group_neutralize output has group mean 0 (within float tolerance).
-- Backtest weights each day: sum = 0 and sum|w| = 1 (or all 0).
+- ts_corr output is in [-1, 1] or NaN.
+- group_neutralize output has group mean 0 (within relative float tolerance).
+- Backtest weights each day: sum = 0 and sum|w| = 1 (or all 0), within relative tolerance.
+- Backtest weights: NaN alpha => weight exactly 0.
 - ts_delay(x, d) shifted back by d equals x.
-- parse(print(ast)) == ast for any generated AST.
+- parse(print(ast)) == ast for any generated AST with non-negative finite literals.
+- Tokenizer supports exponent notation (1e-5, 1E+21).
+- if_else propagates NaN only from cond and the selected branch.
 - Evaluation is deterministic and never throws on generated valid expressions.
