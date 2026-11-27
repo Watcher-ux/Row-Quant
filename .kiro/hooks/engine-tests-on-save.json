@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Engine tests on save",
+      "description": "When an engine source file is saved, run the test suite and report failures against the semantics.md invariants. Report only, no edits.",
+      "trigger": "PostFileSave",
+      "matcher": "src/engine/.*[^/]*\\.ts$",
+      "action": {
+        "type": "agent",
+        "prompt": "Run `npm test`. If anything fails, report which test failed and which invariant from .kiro/steering/semantics.md it checks. Do not edit any files."
+      },
+      "enabled": true
+    }
+  ]
+}

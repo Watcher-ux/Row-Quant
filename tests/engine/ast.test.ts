@@ -16,11 +16,11 @@ describe('Matrix Data Structure', () => {
       expect(m.data.length).toBe(50);
     });
 
-    it('should initialize all elements to 0', () => {
+    it('should initialize all elements to NaN', () => {
       const m = createMatrix(3, 2);
       
       for (let i = 0; i < m.data.length; i++) {
-        expect(m.data[i]).toBe(0);
+        expect(Number.isNaN(m.data[i])).toBe(true);
       }
     });
 
@@ -153,12 +153,12 @@ describe('Matrix Data Structure', () => {
       
       setElement(m, 1, 1, 42);
       
-      // Check that other elements remain 0
-      expect(getElement(m, 0, 0)).toBe(0);
-      expect(getElement(m, 0, 1)).toBe(0);
-      expect(getElement(m, 1, 0)).toBe(0);
-      expect(getElement(m, 1, 2)).toBe(0);
-      expect(getElement(m, 2, 2)).toBe(0);
+      // Check that other elements remain NaN
+      expect(Number.isNaN(getElement(m, 0, 0))).toBe(true);
+      expect(Number.isNaN(getElement(m, 0, 1))).toBe(true);
+      expect(Number.isNaN(getElement(m, 1, 0))).toBe(true);
+      expect(Number.isNaN(getElement(m, 1, 2))).toBe(true);
+      expect(Number.isNaN(getElement(m, 2, 2))).toBe(true);
     });
 
     it('should throw error for negative day index', () => {

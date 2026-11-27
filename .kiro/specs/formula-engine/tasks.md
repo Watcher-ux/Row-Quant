@@ -10,21 +10,21 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
 
 ## Tasks
 
-- [-] 1. Define AST Types and Matrix Data Structure
+- [x] 1. Define AST Types and Matrix Data Structure
   - Create src/engine/ast.ts with all AST node type definitions (Literal, DataField, CellRef, UnaryOp, BinaryOp, FunctionCall)
   - Define Matrix interface (data: Float64Array, nDays: number, nStocks: number)
   - Implement matrix helpers: createMatrix(), getElement(), setElement()
   - Write unit tests for matrix helpers with bounds checking
   - _Requirements: 1.1, 9.1_
 
-- [ ] 2. Implement Tokenizer
+- [x] 2. Implement Tokenizer
   - Create src/engine/parser.ts with Token type and tokenize() function
   - Recognize number literals, identifiers, operators (+, -, *, /, <, >, <=, >=, ==), delimiters (, ), ,
   - Track line and column positions for error reporting
   - Write unit tests for tokenize() with various inputs
   - _Requirements: 1.1_
 
-- [ ] 3. Implement Recursive-Descent Parser
+- [x] 3. Implement Recursive-Descent Parser
   - Define Result<T, E> and ParseError types
   - Implement parse() with parseExpression(), parseComparison(), parseAddSub(), parseMulDiv(), parseUnary(), parsePrimary()
   - Implement helper functions: match(), check(), consume(), previous(), isAtEnd(), isCellReference()
@@ -33,7 +33,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - Write unit tests for valid expressions, invalid expressions, operator precedence
   - _Requirements: 1.1_
 
-- [ ] 4. Implement AST Printer and Round-Trip Property Test
+- [x] 4. Implement AST Printer and Round-Trip Property Test
   - Implement print() function that serializes AST to string
   - Add parentheses to preserve precedence
   - Create tests/engine/parser.prop.test.ts
@@ -43,14 +43,14 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - _Requirements: 1.2_
   - _Property: Parser Round-Trip_
 
-- [ ] 5. Implement rank() and zscore() Cross-Sectional Operators
+- [x] 5. Implement rank() and zscore() Cross-Sectional Operators
   - Create src/engine/operators.ts
   - Implement rank() with tie handling, edge cases (all NaN, single value, all equal)
   - Implement zscore() with edge cases (all NaN, all equal, std = 0)
   - Write unit tests for rank() and zscore() edge cases
   - _Requirements: 2.1_
 
-- [ ] 6. Property Tests for rank()
+- [x] 6. Property Tests for rank()
   - Create tests/engine/operators.prop.test.ts
   - Implement arbitraryMatrix() generator with configurable dimensions
   - Write property test: rank output range in [0, 1] or NaN
@@ -59,7 +59,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - _Requirements: 2.1_
   - _Properties: Rank Output Range, Rank Monotonicity, Rank Transform Invariance_
 
-- [ ] 7. Implement scale() and group_neutralize() Cross-Sectional Operators
+- [x] 7. Implement scale() and group_neutralize() Cross-Sectional Operators
   - Implement scale() with edge cases (all NaN, all zero, mixed NaN)
   - Implement group_neutralize() with edge cases (all NaN groups, single-stock groups)
   - Write unit tests for scale() and group_neutralize() edge cases
@@ -69,7 +69,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - _Requirements: 2.1_
   - _Property: group_neutralize Mean Zero_
 
-- [ ] 8. Implement ts_delay(), ts_delta(), ts_mean() Time-Series Operators
+- [x] 8. Implement ts_delay(), ts_delta(), ts_mean() Time-Series Operators
   - Implement ts_delay() with first d rows as NaN
   - Implement ts_delta() (x[t] - x[t-d])
   - Implement ts_mean() with rolling window, NaN for insufficient data
@@ -78,7 +78,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - _Requirements: 3.1_
   - _Property: ts_delay Shift Invariance_
 
-- [ ] 9. Implement ts_sum(), ts_std_dev(), ts_rank() Time-Series Operators
+- [x] 9. Implement ts_sum(), ts_std_dev(), ts_rank() Time-Series Operators
   - Implement ts_sum() with rolling window
   - Implement ts_std_dev() (population std)
   - Implement ts_rank() (rank within window in [0, 1])
@@ -88,7 +88,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - _Requirements: 3.1_
   - _Property: ts_rank Output Range_
 
-- [ ] 10. Implement ts_decay_linear() and ts_corr() Time-Series Operators
+- [x] 10. Implement ts_decay_linear() and ts_corr() Time-Series Operators
   - Implement ts_decay_linear() with linear decay weights (d, d-1, ..., 1)
   - Verify newest value gets heaviest weight
   - Implement ts_corr() (Pearson correlation over window)
@@ -98,7 +98,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - _Requirements: 3.1_
   - _Property: ts_corr Output Range_
 
-- [ ] 11. Implement All Element-Wise Operators
+- [x] 11. Implement All Element-Wise Operators
   - Implement arithmetic: add(), sub(), mul(), div() (div by 0 → NaN)
   - Implement unary: neg(), abs_op(), sign_op(), log_op() (log ≤0 → NaN), sqrt_op() (sqrt <0 → NaN)
   - Implement comparison: lt(), gt(), lte(), gte(), eq() (return 1 or 0)
@@ -108,7 +108,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - Write unit tests for all element-wise operators and scalar broadcasting
   - _Requirements: 4.1_
 
-- [ ] 12. Implement Complete Evaluator with Cell References
+- [x] 12. Implement Complete Evaluator with Cell References
   - Create src/engine/evaluate.ts
   - Define EvaluationContext (data fields + cell map), EvaluationError
   - Implement evaluate() with pattern matching on AST node types
@@ -119,7 +119,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - Write unit tests for each AST node type, undefined references, operator dispatch, argument validation
   - _Requirements: 5.1, 6.1_
 
-- [ ] 13. Property Test for Evaluation Robustness
+- [x] 13. Property Test for Evaluation Robustness
   - Implement arbitraryContext() generator for property tests
   - Write property test: ∀ ast, ctx: evaluate(ast, ctx) never throws exceptions
   - Verify evaluate() always returns Result<Matrix, EvaluationError>
@@ -128,7 +128,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - _Requirements: 6.1_
   - _Property: Evaluation Robustness_
 
-- [ ] 14. Implement Dependency Graph Construction
+- [x] 14. Implement Dependency Graph Construction
   - Create src/engine/graph.ts
   - Define CellDefinition, DependencyGraph class
   - Implement extractCellReferences() (traverse AST, collect CellRef nodes)
@@ -138,7 +138,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - Write unit tests for extractCellReferences() and addCell()
   - _Requirements: 7.1_
 
-- [ ] 15. Implement Topological Sort and Cycle Detection
+- [x] 15. Implement Topological Sort and Cycle Detection
   - Define CycleError type (message + cycle list)
   - Implement getEvaluationOrder() using DFS with visited/visiting sets
   - Build topological order in reverse post-order
@@ -147,14 +147,14 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - Write unit tests for acyclic graphs, cyclic graphs, single cell
   - _Requirements: 7.1_
 
-- [ ] 16. Property Test for Topological Order
+- [x] 16. Property Test for Topological Order
   - Implement arbitraryAcyclicGraph() generator
   - Write property test: ∀ graph G (acyclic): ∀ cell c, dep d of c: index(d) < index(c) in order
   - Run with diverse acyclic graphs
   - _Requirements: 7.1_
   - _Property: Dependency Graph Topological Order_
 
-- [ ] 17. Implement Weight Computation for Backtest
+- [x] 17. Implement Weight Computation for Backtest
   - Create src/engine/backtest.ts
   - Define BacktestResult interface
   - Implement computeWeights() function
@@ -165,14 +165,14 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - Write unit tests for weight computation
   - _Requirements: 8.1_
 
-- [ ] 18. Property Test for Weight Constraints
+- [x] 18. Property Test for Weight Constraints
   - Write property test: ∀ alpha: ∀ t: sum(weights(alpha)[t]) = 0 (within tolerance)
   - Write property test: ∀ alpha: ∀ t: sum(|weights(alpha)[t]|) = 1 or all zero
   - Run with diverse alpha matrices
   - _Requirements: 8.1_
   - _Property: Backtest Weight Constraints_
 
-- [ ] 19. Implement PnL Computation
+- [x] 19. Implement PnL Computation
   - Implement computePnL() function
   - Apply delay-1: weights[t] * returns[t+1]
   - Compute dailyPnL[t+1] = sum over stocks of w[t][i] * r[t+1][i]
@@ -182,7 +182,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - Write unit tests for PnL computation and delay-1 relationship
   - _Requirements: 8.1_
 
-- [ ] 20. Implement Performance Metrics (Sharpe, Annual Return, Turnover, Max Drawdown)
+- [x] 20. Implement Performance Metrics (Sharpe, Annual Return, Turnover, Max Drawdown)
   - Implement computeSharpe() (mean / std * sqrt(252); handle zero std)
   - Implement computeAnnualReturn() (mean * 252)
   - Implement computeTurnover() (average daily sum|w[t] - w[t-1]|)
@@ -192,7 +192,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - Write unit tests for complete backtest() and edge cases (all NaN alpha, partial NaN)
   - _Requirements: 8.1_
 
-- [ ] 21. Integration Tests for End-to-End Workflows
+- [x] 21. Integration Tests for End-to-End Workflows
   - Create tests/engine/integration.test.ts
   - Write test: parse simple expression → evaluate → verify result
   - Write test: parse complex expression → evaluate → verify result
@@ -206,7 +206,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
   - Write test: realistic alpha expression on sample data
   - _Requirements: All_
 
-- [ ] 22. Performance Validation
+- [x] 22. Performance Validation
   - Create performance benchmark suite
   - Benchmark: Full backtest on 2500 days × 100 stocks completes in under 100ms
   - Profile for bottlenecks if target not met

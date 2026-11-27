@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Spec change to README",
+      "description": "When a spec file changes, keep the README's 'How Kiro was used' section current.",
+      "trigger": "PostFileSave",
+      "matcher": "\\.kiro/specs/.*[^/]*\\.md$",
+      "action": {
+        "type": "agent",
+        "prompt": "Update the 'How Kiro was used' section of README.md (create it at the end if missing) with a 2-3 line summary of what changed in the spec that was just edited. Leave the rest of README.md unchanged."
+      },
+      "enabled": true
+    }
+  ]
+}

@@ -24,11 +24,11 @@ export interface Matrix {
 
 /**
  * Creates a new Matrix with the specified dimensions.
- * All elements are initialized to 0.
+ * All elements are initialized to NaN (missing values must NEVER be 0).
  *
  * @param nDays - Number of trading days (must be > 0)
  * @param nStocks - Number of stocks (must be > 0)
- * @returns A new Matrix with allocated Float64Array
+ * @returns A new Matrix with allocated Float64Array initialized to NaN
  * @throws Error if dimensions are not positive integers
  */
 export function createMatrix(nDays: number, nStocks: number): Matrix {
@@ -39,8 +39,12 @@ export function createMatrix(nDays: number, nStocks: number): Matrix {
     throw new Error(`Matrix dimensions must be integers: nDays=${nDays}, nStocks=${nStocks}`);
   }
 
+  const data = new Float64Array(nDays * nStocks);
+  // Initialize all elements to NaN (missing values must NEVER be 0)
+  data.fill(NaN);
+
   return {
-    data: new Float64Array(nDays * nStocks),
+    data,
     nDays,
     nStocks,
   };
@@ -48,6 +52,10 @@ export function createMatrix(nDays: number, nStocks: number): Matrix {
 
 /**
  * Gets the element at the specified day and stock index.
+ * 
+ * NOTE: This function includes bounds checking for safety in tests.
+ * In operators, evaluator, and backtest hot loops, index m.data[t * m.nStocks + i]
+ * directly for performance, not through this bounds-checked helper.
  *
  * @param m - The matrix to read from
  * @param day - Day index (0-based, must be in [0, nDays))
@@ -68,6 +76,10 @@ export function getElement(m: Matrix, day: number, stock: number): number {
 
 /**
  * Sets the element at the specified day and stock index.
+ * 
+ * NOTE: This function includes bounds checking for safety in tests.
+ * In operators, evaluator, and backtest hot loops, index m.data[t * m.nStocks + i]
+ * directly for performance, not through this bounds-checked helper.
  *
  * @param m - The matrix to write to
  * @param day - Day index (0-based, must be in [0, nDays))
@@ -137,3 +149,144 @@ export type ASTNode =
   | { type: 'UnaryOp'; op: UnaryOperator; operand: ASTNode }
   | { type: 'BinaryOp'; op: BinaryOperator; left: ASTNode; right: ASTNode }
   | { type: 'FunctionCall'; name: FunctionName; args: ASTNode[] };
+
+// ============================================================================
+// AST Printer
+// ============================================================================
+
+/**
+ * Operator precedence levels for parenthesization.
+ * Higher numbers bind more tightly.
+ */
+const PRECEDENCE = {
+  comparison: 1,  // <, >, <=, >=, ==
+  addSub: 2,      // +, -
+  mulDiv: 3,      // *, /
+  unary: 4,       // -, abs, sign, log, sqrt
+  primary: 5,     // literals, identifiers, function calls
+};
+
+/**
+ * Returns the precedence level of a binary operator.
+ */
+function getBinaryOpPrecedence(op: BinaryOperator): number {
+  switch (op) {
+    case 'lt':
+    case 'gt':
+    case 'lte':
+    case 'gte':
+    case 'eq':
+      return PRECEDENCE.comparison;
+    case 'add':
+    case 'sub':
+      return PRECEDENCE.addSub;
+    case 'mul':
+    case 'div':
+    case 'max':
+    case 'min':
+      return PRECEDENCE.mulDiv;
+  }
+}
+
+/**
+ * Returns the precedence level of an AST node.
+ */
+function getNodePrecedence(node: ASTNode): number {
+  switch (node.type) {
+    case 'BinaryOp':
+      return getBinaryOpPrecedence(node.op);
+    case 'UnaryOp':
+      return PRECEDENCE.unary;
+    default:
+      return PRECEDENCE.primary;
+  }
+}
+
+/**
+ * Converts a binary operator enum to its string representation.
+ */
+function binaryOpToString(op: BinaryOperator): string {
+  switch (op) {
+    case 'add': return '+';
+    case 'sub': return '-';
+    case 'mul': return '*';
+    case 'div': return '/';
+    case 'lt': return '<';
+    case 'gt': return '>';
+    case 'lte': return '<=';
+    case 'gte': return '>=';
+    case 'eq': return '==';
+    case 'max': return 'max';
+    case 'min': return 'min';
+  }
+}
+
+/**
+ * Serializes an AST node back to a string expression.
+ * Adds parentheses as needed to preserve operator precedence.
+ *
+ * @param node - The AST node to serialize
+ * @returns String representation of the expression
+ */
+export function print(node: ASTNode): string {
+  switch (node.type) {
+    case 'Literal':
+      return node.value.toString();
+
+    case 'DataField':
+      return node.name;
+
+    case 'CellRef':
+      return node.cell;
+
+    case 'UnaryOp': {
+      const operand = print(node.operand);
+      const needsParens = getNodePrecedence(node.operand) < PRECEDENCE.unary;
+      const wrappedOperand = needsParens ? `(${operand})` : operand;
+
+      if (node.op === 'neg') {
+        return `-${wrappedOperand}`;
+      } else {
+        // abs, sign, log, sqrt are prefix operators
+        return `${node.op} ${wrappedOperand}`;
+      }
+    }
+
+    case 'BinaryOp': {
+      const op = node.op;
+      const opStr = binaryOpToString(op);
+      const thisPrecedence = getBinaryOpPrecedence(op);
+
+      // For max and min, use function call syntax
+      if (op === 'max' || op === 'min') {
+        const left = print(node.left);
+        const right = print(node.right);
+        return `${op}(${left}, ${right})`;
+      }
+
+      // For infix operators, add parentheses if child has lower precedence
+      const left = print(node.left);
+      const right = print(node.right);
+
+      const leftPrecedence = getNodePrecedence(node.left);
+      const rightPrecedence = getNodePrecedence(node.right);
+
+      // Left child needs parens if its precedence is strictly lower
+      const leftNeedsParens = leftPrecedence < thisPrecedence;
+
+      // Right child needs parens if its precedence is lower or equal (for left-associative operators)
+      const rightNeedsParens = rightPrecedence < thisPrecedence || 
+                                (rightPrecedence === thisPrecedence && node.right.type === 'BinaryOp');
+
+      const wrappedLeft = leftNeedsParens ? `(${left})` : left;
+      const wrappedRight = rightNeedsParens ? `(${right})` : right;
+
+      return `${wrappedLeft} ${opStr} ${wrappedRight}`;
+    }
+
+    case 'FunctionCall': {
+      const args = node.args.map(arg => print(arg)).join(', ');
+      return `${node.name}(${args})`;
+    }
+  }
+}

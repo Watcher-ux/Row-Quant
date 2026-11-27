@@ -314,8 +314,10 @@ function setElement(m: Matrix, day: number, stock: number, value: number): void 
 }
 
 function createMatrix(nDays: number, nStocks: number): Matrix {
+  const data = new Float64Array(nDays * nStocks);
+  data.fill(NaN);  // Initialize to NaN (missing values must NEVER be 0)
   return {
-    data: new Float64Array(nDays * nStocks),
+    data,
     nDays,
     nStocks
   }
@@ -327,6 +329,10 @@ function createMatrix(nDays: number, nStocks: number): Matrix {
 - `data.length` must equal `nDays * nStocks`
 - Missing values represented as `NaN`, never `0`
 - Indices are 0-based: day ∈ [0, nDays), stock ∈ [0, nStocks)
+
+**Performance Note**:
+- `getElement()` and `setElement()` include bounds checking for safety in tests
+- In operators, evaluator, and backtest hot loops, index `m.data[t * m.nStocks + i]` directly for performance, not through bounds-checked helpers
 
 ### AST Node Examples
 

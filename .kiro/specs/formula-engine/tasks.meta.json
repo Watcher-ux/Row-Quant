@@ -1,11 +1,378 @@
 {
-  "pbtResults": {},
+  "pbtResults": {
+    "18. Property Test for Weight Constraints": {
+      "status": "passed",
+      "lastRunTimestamp": 1795772711561
+    }
+  },
   "executionHistory": {
     "1. Define AST Types and Matrix Data Structure": [
       {
         "executionId": "61a192f1-248e-4cf5-ac55-2e771edfc8eb",
         "chatSessionId": "sess_2e55bae4-d29a-457d-a114-fe1e3a97715a",
         "timestamp": 1795769438774
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770351879
+      }
+    ],
+    "2. Implement Tokenizer": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357326
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770371870
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770500059
+      }
+    ],
+    "3. Implement Recursive-Descent Parser": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357395
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770506512
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771129274
+      }
+    ],
+    "4. Implement AST Printer and Round-Trip Property Test": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357440
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771140683
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771802119
+      }
+    ],
+    "5. Implement rank() and zscore() Cross-Sectional Operators": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357506
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770507128
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771130199
+      }
+    ],
+    "6. Property Tests for rank()": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357546
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771140913
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771802682
+      }
+    ],
+    "7. Implement scale() and group_neutralize() Cross-Sectional Operators": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357587
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771141469
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771803402
+      }
+    ],
+    "8. Implement ts_delay(), ts_delta(), ts_mean() Time-Series Operators": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357625
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770507647
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771130488
+      }
+    ],
+    "9. Implement ts_sum(), ts_std_dev(), ts_rank() Time-Series Operators": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357663
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771142055
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771803722
+      }
+    ],
+    "10. Implement ts_decay_linear() and ts_corr() Time-Series Operators": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357705
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771821332
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772224666
+      }
+    ],
+    "11. Implement All Element-Wise Operators": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357776
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770507905
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771130772
+      }
+    ],
+    "12. Implement Complete Evaluator with Cell References": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357818
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771821927
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772223568
+      }
+    ],
+    "13. Property Test for Evaluation Robustness": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357857
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772236682
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772584119
+      }
+    ],
+    "14. Implement Dependency Graph Construction": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357893
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795771822715
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772224143
+      }
+    ],
+    "15. Implement Topological Sort and Cycle Detection": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357936
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772237336
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772584590
+      }
+    ],
+    "16. Property Test for Topological Order": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770357975
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772601722
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772882439
+      }
+    ],
+    "17. Implement Weight Computation for Backtest": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770358018
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772237620
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772584873
+      }
+    ],
+    "18. Property Test for Weight Constraints": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770358054
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772602448
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772881873
+      }
+    ],
+    "19. Implement PnL Computation": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770358099
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772602691
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772882739
+      }
+    ],
+    "20. Implement Performance Metrics (Sharpe, Annual Return, Turnover, Max Drawdown)": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770358147
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772890612
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795773126564
+      }
+    ],
+    "21. Integration Tests for End-to-End Workflows": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770358192
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795772890099
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795773127081
+      }
+    ],
+    "22. Performance Validation": [
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795770358236
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795773142542
+      },
+      {
+        "executionId": "cb278272-714d-4bee-8127-f3016fc58bb0",
+        "chatSessionId": "sess_20da87cf-a936-4599-affb-1797a7529a6d",
+        "timestamp": 1795773362981
       }
     ]
   }

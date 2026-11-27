@@ -42,3 +42,15 @@ Used Vibe mode, not a spec: a one-off fetch script doesn't need requirements and
   - `json.dump` would have written bare `NaN`, which isn't valid JSON, so the browser couldn't have loaded the file. Fixed by converting to `null` and writing with `allow_nan=False`.
   - The output would have been about 15 MB. Dropped vwap (the loader computes it), wrote volume as integers, and pinned the date range so results are reproducible.
 - Result: `public/data/market.json`, 10.4 MB, 2,513 days × 100 stocks, 2016-11-21 to 2026-11-19. Checked it with a script: valid JSON, no missing values in any field, no price jumps over 1.8× or under 0.45× day to day (so splits are adjusted). Survivorship bias is noted in the README.
+
+## 2026-11-27: engine build, all 22 tasks (Spec mode, Autopilot)
+
+- Hooks: I had hand-written the hook files in the legacy `.kiro.hook` format. Kiro migrated them to `.json` (PostFileSave) but kept the originals, so every hook fired twice. Deleted the legacy files. Narrowed the README hook so it no longer fires on task checkbox changes.
+- Fixed task 1 before continuing: `createMatrix` now fills with NaN instead of 0, and hot loops index the array directly instead of going through the bounds-checked helpers. Both added to design.md.
+- Ran tasks 1–22 in one prompt, with the rule "run tests after each task, stop on any contradiction, commit each wave". Result: 6 engine modules (~3,100 lines) and 17 test files (~400 tests, about 30 of them property-based). The 2500×100 backtest benchmark runs in ~52 ms against a 100 ms target.
+- Review findings:
+  - Kiro moved on while `evaluate.prop.test.ts` was hung at 4/7, against the stop-on-red rule.
+  - Root cause of the hang: time-series operators loop over the window value `d` even when it is larger than the number of days. `ts_rank(close, 1e8)` on a 5×3 matrix takes 1.8 s, and larger literals effectively freeze the evaluator. The random AST generator occasionally produces such literals, which made the test hang only sometimes.
+  - The window argument was read from `matrix.data[0]` of any expression, so `ts_mean(close, close*3)` was silently accepted.
+  - Kiro had lowered numRuns in some property tests "for speed", which hid the hang rather than fixing it.
+  - Only wave 1 was committed. Kiro stopped mid-commit for the rest.
