@@ -34,3 +34,11 @@ Gave Kiro one revision prompt with all 8 review fixes. It updated `semantics.md`
 - Checked Kiro's output instead of trusting it. Two slips found:
   - It wrote a UTF-8 BOM at the start of `semantics.md`. The BOM sits in front of the front matter and could stop the `fileMatch` inclusion from being recognised, so I stripped it.
   - When it renumbered the tasks it dropped the Web Worker task along with the two I asked to delete. Decided the worker task goes into the upcoming UI spec, where it belongs anyway.
+
+## 2026-11-21: data script (Vibe mode)
+
+Used Vibe mode, not a spec: a one-off fetch script doesn't need requirements and a design. Rule of thumb from here on is specs where correctness matters (the engine) and vibe mode for throwaway tooling.
+- Kiro's first version looked right (100 tickers, 11 sectors, adjusted prices, missing days kept as missing), but review caught two problems:
+  - `json.dump` would have written bare `NaN`, which isn't valid JSON, so the browser couldn't have loaded the file. Fixed by converting to `null` and writing with `allow_nan=False`.
+  - The output would have been about 15 MB. Dropped vwap (the loader computes it), wrote volume as integers, and pinned the date range so results are reproducible.
+- Result: `public/data/market.json`, 10.4 MB, 2,513 days × 100 stocks, 2016-11-21 to 2026-11-19. Checked it with a script: valid JSON, no missing values in any field, no price jumps over 1.8× or under 0.45× day to day (so splits are adjusted). Survivorship bias is noted in the README.
