@@ -10,7 +10,7 @@ The engine is pure TypeScript with no external runtime dependencies, operates on
 
 ## Tasks
 
-- [ ] 1. Define AST Types and Matrix Data Structure
+- [-] 1. Define AST Types and Matrix Data Structure
   - Create src/engine/ast.ts with all AST node type definitions (Literal, DataField, CellRef, UnaryOp, BinaryOp, FunctionCall)
   - Define Matrix interface (data: Float64Array, nDays: number, nStocks: number)
   - Implement matrix helpers: createMatrix(), getElement(), setElement()

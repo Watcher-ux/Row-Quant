@@ -22,6 +22,10 @@ npm run dev     # app
 npm test        # unit + property-based tests
 ```
 
+## How Kiro was used
+
+Kiro authored the formula-engine spec (`formula-engine/tasks.md`) and is driving implementation task by task. Task 1 — defining AST types and the Matrix data structure — has been marked in-progress (`[-]`), indicating Kiro has started generating `src/engine/ast.ts` with node types, the `Matrix` interface, and helper functions.
+
 ## License
 
 MIT
